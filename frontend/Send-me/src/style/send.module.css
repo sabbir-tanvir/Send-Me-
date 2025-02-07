@@ -4,9 +4,6 @@
 
 }
 
-body{
-    background-color: transparent;
-}
 .send-email {
     display: flex;
     flex-direction: column;

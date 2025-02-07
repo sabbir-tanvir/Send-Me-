@@ -14,7 +14,7 @@ const Main: React.FC = () => {
         const response = await axios.get('http://localhost:5000/inbox', {
           headers: {
             Authorization: `Bearer ${token}`,
-            
+
           },
         });
         console.log("messager ", response);
@@ -51,9 +51,17 @@ const Main: React.FC = () => {
           {messages.length > 0 ? (
             messages.map((message) => (
               <div key={message._id} className={style.message}>
-                <p><strong>From:</strong> {message.sender.username}</p>
-                <p><strong>Received:</strong> {new Date(message.timestamp).toLocaleString()}</p>
-                <p>{message.content}</p>
+                <div className={style.messageHeaderr}>
+                  <div className={style.messageHeader}>
+                    <h4><strong>Subject: </strong> {message.subject}</h4>
+                  </div>
+                  <div className={style.messageTime}>
+                    <p><strong>Received:</strong> {new Date(message.timestamp).toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className={style.messageContent}>
+                  <p>{message.content}</p>
+                </div>
               </div>
             ))
           ) : (
