@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import style from '../style/send.module.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const SendEmail: React.FC = () => {
     const [subject, setSubject] = useState('');
     const [content, setContent] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleSubmit = async () => {
         try {
@@ -25,6 +27,7 @@ const SendEmail: React.FC = () => {
             );
 
             console.log('Message sent successfully:', response.data);
+            navigate('/main'); // Navigate to /main after successful submission
         } catch (error) {
             console.error('Error sending message:', error);
         }

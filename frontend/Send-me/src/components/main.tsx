@@ -41,7 +41,7 @@ const Main: React.FC = () => {
           <img src="/5962463.png" alt="Send Me Logo" />
         </div>
         <div className={style.profile}>
-          <img src="/12.jpg" alt="Profile" />
+          <img src="/profile.png" alt="Profile" />
         </div>
       </header>
 
