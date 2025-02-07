@@ -30,7 +30,6 @@ app.use(logger);
 
 const protect = asyncHandler(async (req, res, next) => {
   let token;
-  // console.log(req.headers.authorization);
 
   if (
     req.headers.authorization &&
@@ -60,7 +59,7 @@ app.post(
   "/register",
   asyncHandler(async (req, res, next) => {
     const { password } = req.body;
-    const username = generateUsername("_", 6);
+    const username = generateUsername("_", 0, 12);
 
     console.log(username);
     // Create user
@@ -98,7 +97,7 @@ app.post(
   "/send",
   protect,
   asyncHandler(async (req, res, next) => {
-    const { content } = req.body;
+    const { subject, content } = req.body;
     const senderId = req.user._id;
 
     const users = await User.find({ _id: { $ne: senderId } });
@@ -109,6 +108,7 @@ app.post(
     const newMessage = new Message({
       sender: senderId,
       receiver: randomUser._id,
+      subject,
       content,
     });
 
