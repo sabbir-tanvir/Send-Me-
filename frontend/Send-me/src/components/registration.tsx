@@ -1,39 +1,30 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { registerUser } from '../services/auth';
+import axios from 'axios';
 
-const Register = () => {
-  const [username, setUsername] = useState('');
+const Register: React.FC = () => {
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setMessage('');
 
     try {
-      await registerUser({ username, password });
-      history.push('/login');
-    } catch (err) {
-      setError(err.response.data.error || 'Registration failed');
+      const response = await axios.post('http://localhost:5000/register', { password });
+      setMessage(response.data.message);
+    } catch (err: any) {
+      setError(err.response?.data?.error || 'Registration failed');
     }
   };
 
   return (
     <div>
       <h2>Register</h2>
+      {message && <p style={{ color: 'green' }}>{message}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
         <div>
           <label>Password:</label>
           <input
