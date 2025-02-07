@@ -4,6 +4,7 @@ import Main from './components/main';
 import Register from './components/registration';
 import SendEmail from './components/send';
 import Login from './components/login';
+import Message from './components/message';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/send" element={<SendEmail />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/message" element={<Message />} />
         </Routes>
       </div>
     </Router>

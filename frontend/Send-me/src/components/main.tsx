@@ -34,12 +34,17 @@ const Main: React.FC = () => {
     navigate('/send');
   };
 
+  const handleMessageClick = (message) => {
+    navigate('/message', { state: { id: message._id, subject: message.subject, content: message.content } });
+  };
+
   return (
     <div className={style.maindiv}>
       <header className={style.header}>
         <div className={style.logo}>
           <img src="/5962463.png" alt="Send Me Logo" />
         </div>
+        <h1>Anonymous Message</h1>
         <div className={style.profile}>
           <img src="/profile.png" alt="Profile" />
         </div>
@@ -50,7 +55,7 @@ const Main: React.FC = () => {
         <div className={style.messages}>
           {messages.length > 0 ? (
             messages.map((message) => (
-              <div key={message._id} className={style.message}>
+              <div key={message._id} className={style.message} onClick={() => handleMessageClick(message)}>
                 <div className={style.messageHeaderr}>
                   <div className={style.messageHeader}>
                     <h4><strong>Subject: </strong> {message.subject}</h4>
@@ -68,10 +73,10 @@ const Main: React.FC = () => {
             <p>No messages found.</p>
           )}
         </div>
+        <div>
+        <button className={`${style.button} ${style.buttonRight}`} onClick={handleSendClick}>Send</button>
+        </div>
       </div>
-      <button className={style.button} onClick={handleSendClick} >
-        Send
-      </button>
     </div>
   );
 };

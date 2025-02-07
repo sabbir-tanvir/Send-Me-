@@ -1,4 +1,3 @@
-
 .maindiv{
     width: 100%;
 }
@@ -11,6 +10,10 @@
     border: 1px solid #ccc;
     border-radius: 13px;
     margin-bottom: 16px;
+}
+.container {
+    width: 100%;
+    
 }
 
 .messages {
@@ -85,16 +88,15 @@
 
 .button {
     position: fixed;
-    bottom: 80px;
-    right: inherit;
+    bottom: 73px;
+    left: auto;
+    right: auto;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
-
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     padding: 15px 15px;
-
 }
