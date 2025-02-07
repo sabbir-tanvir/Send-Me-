@@ -12,12 +12,9 @@ const Register: React.FC = () => {
     setMessage('');
 
     try {
-
-      const response = await axios.post('http://localhost:5000/register', { password });
+      const response = await axios.post('http://localhost:3000/register', { password });
       setMessage(response.data.message);
-      console.log(response.data);
-    } catch (err) {
-      console.error(err);
+    } catch (err: any) {
       setError(err.response?.data?.error || 'Registration failed');
     }
   };
