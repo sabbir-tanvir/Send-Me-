@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../style/main.css';
 
 const Register: React.FC = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +66,10 @@ const Register: React.FC = () => {
 
           <label className="form-label" htmlFor="password">Password</label>
           <button type="submit" className="btn">Register</button>
+          <br />
+          <br />
+          <button type="button" className="btn" onClick={() => navigate('/login')}>LogIn</button> {/* Add onClick handler */}
+
         </div>
       </form>
     </div>
