@@ -26,7 +26,6 @@ app.use(express.json());
 // Enable CORS
 app.use(cors());
 
-
 app.use(logger);
 
 const protect = asyncHandler(async (req, res, next) => {
@@ -69,11 +68,12 @@ app.post(
       username,
       password,
     });
-    res.json({
-      success: true,
-      username,
-      message: `User created successfully with ${username}`,
-    });
+    sendTokenResponse(
+      user,
+      200,
+      res,
+      `User created successfully with ${username}`
+    );
   })
 );
 // login
@@ -90,7 +90,7 @@ app.post(
     }
 
     // Send JWT
-    sendTokenResponse(user, 200, res);
+    sendTokenResponse(user, 200, res, "Login successful");
   })
 );
 // send message
@@ -113,7 +113,7 @@ app.post(
     });
 
     await newMessage.save();
-    res.json({ message: "Message sent successfully!" });
+    res.json({ success: true, message: "Message sent successfully!" });
   })
 );
 // check inbox
@@ -142,7 +142,7 @@ app.get("/", async (req, res, next) => {
   res.json({ success: true, message: "hello world" });
 });
 
-const sendTokenResponse = (user, statusCode, res) => {
+const sendTokenResponse = (user, statusCode, res, message) => {
   // Create token
   const token = user.getSignedJwtToken();
 
@@ -157,10 +157,15 @@ const sendTokenResponse = (user, statusCode, res) => {
     options.secure = true;
   }
 
-  res.status(statusCode).cookie("token", token, options).json({
-    success: true,
-    token,
-  });
+  res
+    .status(statusCode)
+    .cookie("token", token, options)
+    .json({
+      success: true,
+      username: user.username,
+      token,
+      ...(message ? { message } : {}),
+    });
 };
 
 app.use(errorHandler);
