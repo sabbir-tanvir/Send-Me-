@@ -1,22 +1,40 @@
 import React, { useState } from 'react';
-import  '../style/send.css'; // Add this line to import the CSS file
+import axios from 'axios';
+import style from '../style/send.module.css';
 
 const SendEmail: React.FC = () => {
     const [subject, setSubject] = useState('');
     const [content, setContent] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Handle the email sending logic here
-        console.log('Email sent with subject:', subject);
-        console.log('Email content:', content);
+    const handleSubmit = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found');
+                return;
+            }
+
+            const response = await axios.post(
+                'http://localhost:5000/send', // Updated endpoint URL
+                { subject, content },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            console.log('Message sent successfully:', response.data);
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
     };
 
     return (
-        <div className='send-email'> {/* Add the class name here */}
+        <div className={style.sendEmail}>
             <h2>Send Email</h2>
-            <form onSubmit={handleSubmit}>
-                <div className='form-group'> {/* Add the class name here */}
+            <div className={style.container}>
+                <div className={style.formGroup}>
                     <label htmlFor="subject">Subject:</label>
                     <input
                         type="text"
@@ -26,7 +44,7 @@ const SendEmail: React.FC = () => {
                         required
                     />
                 </div>
-                <div className='form-group1'> {/* Add the class name here */}
+                <div className={style.formGroup}>
                     <label htmlFor="content">Content:</label>
                     <textarea
                         id="content"
@@ -35,8 +53,8 @@ const SendEmail: React.FC = () => {
                         required
                     />
                 </div>
-            </form>
-            <button type="submit">Send</button>
+                <button type="button" onClick={handleSubmit}>Send</button>
+            </div>
         </div>
     );
 };

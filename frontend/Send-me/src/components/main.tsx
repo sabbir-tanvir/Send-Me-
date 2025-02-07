@@ -1,30 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import style from '../style/style.module.css';
+import axios from 'axios';
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/inbox', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            
+          },
+        });
+        console.log("messager ", response);
+        if (response.data.hasMessages) {
+
+          setMessages(response.data.messages);
+        }
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    };
+
+    fetchMessages();
+  }, []);
 
   const handleSendClick = () => {
     navigate('/send');
   };
 
   return (
-    <div>
-      <header style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', backgroundColor: '#f5f5f5' }}>
-        <div>
-          <img src="/path/to/logo.png" alt="Send Me Logo" style={{ height: '40px' }} />
+    <div className={style.maindiv}>
+      <header className={style.header}>
+        <div className={style.logo}>
+          <img src="/5962463.png" alt="Send Me Logo" />
         </div>
-        <div>
-          <img src="/path/to/profile.png" alt="Profile" style={{ height: '40px', borderRadius: '50%' }} />
+        <div className={style.profile}>
+          <img src="/12.jpg" alt="Profile" />
         </div>
       </header>
-      <div style={{ padding: '20px' }}>
+
+      <div className={style.container}>
         <h2>Messages</h2>
-        <div>
-          {/* Render messages here */}
+        <div className={style.messages}>
+          {messages.length > 0 ? (
+            messages.map((message) => (
+              <div key={message._id} className={style.message}>
+                <p><strong>From:</strong> {message.sender.username}</p>
+                <p><strong>Received:</strong> {new Date(message.timestamp).toLocaleString()}</p>
+                <p>{message.content}</p>
+              </div>
+            ))
+          ) : (
+            <p>No messages found.</p>
+          )}
         </div>
       </div>
-      <button onClick={handleSendClick} style={{ position: 'fixed', bottom: '20px', right: '20px', padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px' }}>
+      <button className={style.button} onClick={handleSendClick} >
         Send
       </button>
     </div>

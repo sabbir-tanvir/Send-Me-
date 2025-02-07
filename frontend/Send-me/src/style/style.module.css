@@ -1,0 +1,52 @@
+
+.maindiv{
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    border: 1px solid #ccc;
+    border-radius: 13px;
+}
+
+.logo {
+
+    cursor: pointer;
+}
+.logo img {
+    height: 40px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #1c37cd;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.profile img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.button {
+    position: fixed;
+    bottom: 80px;
+    right: inherit;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+
+}
