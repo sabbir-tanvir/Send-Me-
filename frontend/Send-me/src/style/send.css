@@ -1,0 +1,64 @@
+*{
+    box-sizing: border-box;
+}
+
+.send-email {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+}
+
+h2 {
+    text-align: left;
+    color: #333;
+}
+
+form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+.form-group1{
+    flex: 1;
+}
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100%;
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px 10px 20px;
+    border: none;
+    margin-top: auto;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
