@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const errorHandler = require("./middleware/error");
 const ErrorResponse = require("./middleware/errorResponse");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 // import models
 const User = require("./models/User");
@@ -22,6 +23,9 @@ const app = express();
 
 // Body parser
 app.use(express.json());
+// Enable CORS
+app.use(cors());
+
 
 app.use(logger);
 
@@ -67,6 +71,7 @@ app.post(
     });
     res.json({
       success: true,
+      username,
       message: `User created successfully with ${username}`,
     });
   })
