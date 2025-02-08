@@ -15,8 +15,9 @@ const Register: React.FC = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/register', { password });
-      setMessage(response.data.message);
+      const response = await axios.post('https://send-me.onrender.com/register', { password });
+      const data: { message: string } = response.data;
+      setMessage(data.message);
     } catch (err: any) {
       setError(err.response?.data?.error || 'Registration failed');
     }

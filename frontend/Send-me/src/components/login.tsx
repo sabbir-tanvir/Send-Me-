@@ -19,8 +19,9 @@ const Login: React.FC = () => {
 
   const autoLogin = async (savedUsername: string, savedPassword: string) => {
     try {
-      const response = await axios.post('http://localhost:5000/login', { username: savedUsername, password: savedPassword });
-      localStorage.setItem('token', response.data.token);
+      const response = await axios.post('https://send-me.onrender.com/login', { username: savedUsername, password: savedPassword });
+      const data: { token: string } = response.data;
+      localStorage.setItem('token', data.token);
       navigate('/main');
     } catch (err: any) {
       console.error('Auto login failed:', err);
@@ -32,8 +33,9 @@ const Login: React.FC = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/login', { username, password });
-      localStorage.setItem('token', response.data.token);
+      const response = await axios.post('https://send-me.onrender.com/login', { username, password });
+      const data: { token: string } = response.data;
+      localStorage.setItem('token', data.token);
       localStorage.setItem('username', username);
       localStorage.setItem('password', password);
       navigate('/main');

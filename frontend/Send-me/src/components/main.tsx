@@ -11,16 +11,17 @@ const Main: React.FC = () => {
     const fetchMessages = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/inbox', {
+        const response = await axios.get('https://send-me.onrender.com/inbox', {
           headers: {
             Authorization: `Bearer ${token}`,
 
           },
         });
         console.log("message ", response);
-        if (response.data.hasMessages) {
+        const data: { hasMessages: boolean; messages: { _id: string; subject: string; content: string; timestamp: string }[] } = response.data;
+        if (data.hasMessages) {
 
-          setMessages(response.data.messages);
+          setMessages(data.messages);
         }
       } catch (error) {
         console.error('Error fetching messages:', error);
@@ -34,7 +35,7 @@ const Main: React.FC = () => {
     navigate('/send');
   };
 
-  const handleMessageClick = (message) => {
+  const handleMessageClick = (message: { _id: string; subject: string; content: string; timestamp: string }) => {
     navigate('/message', { state: { id: message._id, subject: message.subject, content: message.content } });
   };
 
@@ -54,7 +55,7 @@ const Main: React.FC = () => {
         <h2>Messages</h2>
         <div className={style.messages}>
           {messages.length > 0 ? (
-            messages.map((message) => (
+            messages.map((message: { _id: string; subject: string; content: string; timestamp: string }) => (
               <div key={message._id} className={style.message} onClick={() => handleMessageClick(message)}>
                 <div className={style.messageHeaderr}>
                   <div className={style.messageHeader}>

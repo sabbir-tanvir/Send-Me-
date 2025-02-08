@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const Message: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { id, subject, content } = location.state || {};
+    const { subject, content } = location.state || {};
 
     return (
         <div className={style.sendEmail}>

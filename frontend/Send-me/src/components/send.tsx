@@ -17,7 +17,7 @@ const SendEmail: React.FC = () => {
             }
 
             const response = await axios.post(
-                'http://localhost:5000/send', // Updated endpoint URL
+                'https://send-me.onrender.com/send', // Updated endpoint URL
                 { subject, content },
                 {
                     headers: {
