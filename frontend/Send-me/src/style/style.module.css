@@ -1,6 +1,8 @@
 .maindiv{
     width: 100%;
 }
+/* @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Pangolin&display=swap');
 
 .header {
     display: flex;
@@ -15,6 +17,13 @@
 .container {
     width: 100%;
     
+}
+.header h1 {
+    font-family: "Merienda", serif;
+    font-weight: 800;
+    font-size: 30px;
+    font-style: normal;
+    color: #112054;
 }
 
 .messages {
@@ -49,12 +58,17 @@
     align-items: center;
     margin-bottom: 3px;
     color: #112054;
+    border-bottom: 1px solid #bbb;
 }
 .messageHeader{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3px;
+    font-family: "Merienda", serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
 }
 .messageContent {
     display: -webkit-box;
@@ -63,7 +77,23 @@
     overflow: hidden;
     text-align: left;
     text-overflow: ellipsis;
+    font-family: "Merienda", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
   }
+
+.alert {
+    font-family: "Merienda", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-style: italic;
+    font-size: 21px;
+    padding-top: 40px;
+    color: red;
+
+}
 
 .logo {
 
@@ -96,9 +126,10 @@
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    width: 85px;
+    border-radius: 10px;
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
-    padding: 15px 15px;
+    padding: 13px 15px;
 }

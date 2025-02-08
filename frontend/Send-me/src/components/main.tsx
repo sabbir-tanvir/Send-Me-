@@ -17,7 +17,7 @@ const Main: React.FC = () => {
 
           },
         });
-        console.log("messager ", response);
+        console.log("message ", response);
         if (response.data.hasMessages) {
 
           setMessages(response.data.messages);
@@ -60,9 +60,9 @@ const Main: React.FC = () => {
                   <div className={style.messageHeader}>
                     <h4><strong>Subject: </strong> {message.subject}</h4>
                   </div>
-                  <div className={style.messageTime}>
-                    <p><strong>Received:</strong> {new Date(message.timestamp).toLocaleString()}</p>
-                  </div>
+                    <div className={style.messageTime}>
+                    <p>{new Date(message.timestamp).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true })}</p>
+                    </div>
                 </div>
                 <div className={style.messageContent}>
                   <p>{message.content}</p>
@@ -70,11 +70,13 @@ const Main: React.FC = () => {
               </div>
             ))
           ) : (
-            <p>No messages found.</p>
+            <div className={style.alert}>            
+              <p>No messages found.</p>
+            </div>
           )}
         </div>
         <div>
-        <button className={`${style.button} ${style.buttonRight}`} onClick={handleSendClick}>Send</button>
+          <button className={`${style.button} ${style.buttonRight}`} onClick={handleSendClick}>Send</button>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<div>Home Page</div>} />
+          <Route path="/" element={<Register />} />
           <Route path="/register" element={<Register />} />
           <Route path="/main" element={<Main />} />
           <Route path="/send" element={<SendEmail />} />
