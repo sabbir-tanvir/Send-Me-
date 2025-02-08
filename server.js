@@ -101,19 +101,26 @@ app.post(
     const senderId = req.user._id;
 
     const users = await User.find({ _id: { $ne: senderId } });
-    if (users.length === 0)
-      return res.status(400).json({ error: "No users available" });
+    if (users.length < 10)
+      return res.status(400).json({ error: "Not enough users available" });
 
-    const randomUser = users[Math.floor(Math.random() * users.length)];
-    const newMessage = new Message({
+    const randomUsers = [];
+    while (randomUsers.length < 10) {
+      const randomUser = users[Math.floor(Math.random() * users.length)];
+      if (!randomUsers.includes(randomUser)) {
+        randomUsers.push(randomUser);
+      }
+    }
+
+    const messages = randomUsers.map(user => ({
       sender: senderId,
-      receiver: randomUser._id,
+      receiver: user._id,
       subject,
       content,
-    });
+    }));
 
-    await newMessage.save();
-    res.json({ success: true, message: "Message sent successfully!" });
+    await Message.insertMany(messages);
+    res.json({ success: true, message: "Messages sent successfully!" });
   })
 );
 // check inbox
