@@ -68,7 +68,8 @@ const Register: React.FC = () => {
           <button type="submit" className="btn">Register</button>
           <br />
           <br />
-          <button type="button" className="btn" onClick={() => navigate('/login')}>LogIn</button> {/* Add onClick handler */}
+          have an account? <br />
+          <button type="button" className="btn1" onClick={() => navigate('/login')}>LogIn</button> {/* Add onClick handler */}
 
         </div>
       </form>
