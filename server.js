@@ -71,7 +71,7 @@ app.post(
       user,
       200,
       res,
-      `User created successfully with the:- ${username}`
+      `Use this username & ur pass to Login:-  ${username}`
     );
   })
 );
