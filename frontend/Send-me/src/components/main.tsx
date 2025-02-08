@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<{ _id: string; subject: string; content: string; timestamp: string }[]>([]);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -18,7 +18,7 @@ const Main: React.FC = () => {
           },
         });
         console.log("message ", response);
-        const data: { hasMessages: boolean; messages: { _id: string; subject: string; content: string; timestamp: string }[] } = response.data;
+        const data = response.data as { hasMessages: boolean; messages: { _id: string; subject: string; content: string; timestamp: string }[] };
         if (data.hasMessages) {
 
           setMessages(data.messages);

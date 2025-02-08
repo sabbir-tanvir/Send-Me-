@@ -20,7 +20,7 @@ const Login: React.FC = () => {
   const autoLogin = async (savedUsername: string, savedPassword: string) => {
     try {
       const response = await axios.post('https://send-me.onrender.com/login', { username: savedUsername, password: savedPassword });
-      const data: { token: string } = response.data;
+      const data = response.data as { token: string };
       localStorage.setItem('token', data.token);
       navigate('/main');
     } catch (err: any) {
@@ -34,7 +34,7 @@ const Login: React.FC = () => {
 
     try {
       const response = await axios.post('https://send-me.onrender.com/login', { username, password });
-      const data: { token: string } = response.data;
+      const data = response.data as { token: string };
       localStorage.setItem('token', data.token);
       localStorage.setItem('username', username);
       localStorage.setItem('password', password);
