@@ -121,8 +121,7 @@
 }
 
 .button {
-    position: fixed;
-    bottom: 73px;
+    position: absolute;
     left: auto;
     right: auto;
     background-color: #007bff;

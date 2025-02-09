@@ -76,6 +76,7 @@ const Main: React.FC = () => {
             </div>
           )}
         </div>
+        
         <div>
           <button className={`${style.button} ${style.buttonRight}`} onClick={handleSendClick}>Send</button>
         </div>
