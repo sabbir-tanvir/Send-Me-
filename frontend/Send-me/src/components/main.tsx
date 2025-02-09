@@ -72,7 +72,8 @@ const Main: React.FC = () => {
             ))
           ) : (
             <div className={style.alert}>            
-              <p>No messages found.</p>
+                <p>📭 You haven't received any messages yet <br />
+                   but you can send one by clicking the send button below. ✉️</p>
             </div>
           )}
         </div>
