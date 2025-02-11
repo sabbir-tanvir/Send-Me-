@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
   const autoLogin = async (savedUsername: string, savedPassword: string) => {
     try {
-      const response = await axios.post('https://send-me.onrender.com/login', { username: savedUsername, password: savedPassword });
+      const response = await axios.post('https://sendme-backend.vercel.app/login', { username: savedUsername, password: savedPassword });
       const data = response.data as { token: string };
       localStorage.setItem('token', data.token);
       navigate('/main');
@@ -33,7 +33,7 @@ const Login: React.FC = () => {
     setError('');
 
     try {
-      const response = await axios.post('https://send-me.onrender.com/login', { username, password });
+      const response = await axios.post('https://sendme-backend.vercel.app/login', { username, password });
       const data = response.data as { token: string };
       localStorage.setItem('token', data.token);
       localStorage.setItem('username', username);

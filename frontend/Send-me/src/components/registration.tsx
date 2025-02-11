@@ -15,7 +15,7 @@ const Register: React.FC = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('https://send-me.onrender.com/register', { password });
+      const response = await axios.post('https://sendme-backend.vercel.app/register', { password });
       const data = response.data as { message: string };
       setMessage(data.message);
     } catch (err: any) {

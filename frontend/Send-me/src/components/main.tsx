@@ -11,7 +11,7 @@ const Main: React.FC = () => {
     const fetchMessages = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('https://send-me.onrender.com/inbox', {
+        const response = await axios.get('https://sendme-backend.vercel.app/inbox', {
           headers: {
             Authorization: `Bearer ${token}`,
 

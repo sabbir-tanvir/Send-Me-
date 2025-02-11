@@ -17,7 +17,7 @@ const SendEmail: React.FC = () => {
             }
 
             const response = await axios.post(
-                'https://send-me.onrender.com/send', // Updated endpoint URL
+                'https://sendme-backend.vercel.app/send', // Updated endpoint URL
                 { subject, content },
                 {
                     headers: {
